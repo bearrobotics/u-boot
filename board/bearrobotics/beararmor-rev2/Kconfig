@@ -1,0 +1,12 @@
+if TARGET_BEARARMOR_REV2
+
+config SYS_VENDOR
+        default "bearrobotics"
+
+config SYS_BOARD
+        default "beararmor-rev2"
+
+config SYS_CONFIG_NAME
+        default "beararmor-rev2"
+
+endif

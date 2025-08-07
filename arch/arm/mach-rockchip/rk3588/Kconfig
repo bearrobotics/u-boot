@@ -410,6 +410,9 @@ config TARGET_TOYBRICK_RK3588
 	  1x HDMI Output, 1x HDMI Input
 	  2x Ethernet Port
 
+config TARGET_BEARARMOR_REV2
+	bool "Bear Robotics BearArmor board revision 2"
+	select BOARD_LATE_INIT
 
 config ROCKCHIP_BOOT_MODE_REG
 	default 0xfd588080
@@ -446,5 +449,6 @@ source "board/rockchip/evb_rk3588/Kconfig"
 source "board/rockchip/toybrick_rk3588/Kconfig"
 source "board/theobroma-systems/jaguar_rk3588/Kconfig"
 source "board/theobroma-systems/tiger_rk3588/Kconfig"
+source "board/bearrobotics/beararmor-rev2/Kconfig"
 
 endif
