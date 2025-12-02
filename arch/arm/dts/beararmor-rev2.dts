@@ -1,5 +1,6 @@
 /dts-v1/;
 #include "rk3588s.dtsi"
+#include <dt-bindings/input/input.h>
 
 / {
 	model = "BearArmor rev2";
@@ -23,6 +24,27 @@
 	chosen {
 		stdout-path = "serial2:1500000n8";
 	};
+
+	adc-keys {
+		compatible = "adc-keys";
+		io-channels = <&saradc 1>;
+		io-channel-names = "buttons";
+		keyup-threshold-microvolt = <1800000>;
+		u-boot,dm-pre-reloc;
+		status = "okay";
+
+		// Recovery button
+		volumeup-key {
+			u-boot,dm-pre-reloc;
+			linux,code = <KEY_VOLUMEUP>;
+			label = "volume up";
+			press-threshold-microvolt = <1750>;
+		};
+	};
+};
+
+&saradc {
+	status = "okay";
 };
 
 &sdhci {
