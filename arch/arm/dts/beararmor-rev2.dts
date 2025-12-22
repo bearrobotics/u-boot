@@ -7,17 +7,6 @@
 	model = "BearArmor rev2";
 	compatible = "rockchip,rk3588";
 
-	reserved-memory {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		ranges;
-
-		tpm_event_log: tpm-event-log@28000000 {
-			reg = <0x0 0x28000000 0x0 0x10000>; /* 640 MiB base, 64 KiB size */
-			no-map;
-		};
-	};
-
 	aliases {
 		mmc0 = &sdhci;
 	};
@@ -50,7 +39,6 @@
 
 	tpm0: tpm@0 {
 		compatible = "infineon,slb9670", "tis,tpm2-spi", "tcg,tpm_tis-spi";
-		memory-region = <&tpm_event_log>;
 		reg = <0>;
 		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
 		spi-max-frequency = <500000>;
