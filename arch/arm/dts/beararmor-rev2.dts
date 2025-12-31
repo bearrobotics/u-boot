@@ -16,6 +16,11 @@
 			reg = <0x0 0x28000000 0x0 0x10000>; /* 640 MiB base, 64 KiB size */
 			no-map;
 		};
+
+		optee@30000000 {
+			reg = <0x00 0x30000000 0x00 0x02000000>;
+			no-map;
+		};
 	};
 
 	aliases {
