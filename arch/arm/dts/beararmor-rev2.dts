@@ -49,7 +49,7 @@
 	status = "okay";
 
 	tpm0: tpm@0 {
-		compatible = "infineon,slb9670", "tis,tpm2-spi", "tcg,tpm_tis-spi";
+		compatible = "tcg,tpm_tis-spi";
 		memory-region = <&tpm_event_log>;
 		reg = <0>;
 		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
