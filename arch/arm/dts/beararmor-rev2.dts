@@ -1,6 +1,7 @@
 /dts-v1/;
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/rockchip.h>
+#include <dt-bindings/input/input.h>
 #include "rk3588s.dtsi"
 
 / {
@@ -25,6 +26,39 @@
 	chosen {
 		stdout-path = "serial2:1500000n8";
 	};
+
+	adc-keys {
+		compatible = "adc-keys";
+		io-channels = <&saradc 1>;
+		io-channel-names = "buttons";
+		keyup-threshold-microvolt = <1800000>;
+		bootph-all;
+		status = "okay";
+
+		/* Used for Recovery/Maskrom button */
+		button-download {
+			bootph-all;
+			linux,code = <KEY_VOLUMEUP>;
+			label = "download";
+			press-threshold-microvolt = <100000>;
+		};
+	};
+
+	vcc_1v8_dummy: vcc-1v8-dummy {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc_1v8_dummy";
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		bootph-all;
+    };
+};
+
+&saradc {
+	bootph-all;
+	status = "okay";
+    vref-supply = <&vcc_1v8_dummy>;
 };
 
 &sdhci {
